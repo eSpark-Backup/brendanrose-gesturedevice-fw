@@ -1,0 +1,21 @@
+#! armclang -E -I.\..\..\sdk\platform\include\ --target=arm-arm-none-eabi -mcpu=cortex-m0 -xc
+
+#include "sdk_defs.h"
+
+LR_1 0x07FC0000 SDK_SEC_BOOTLOADER_LOAD_IMAGE_SIZE {
+    ER_1 +0 SDK_SEC_BOOTLOADER_COPY_BASE_ADDRESS {
+        *.o (RESET, +First)
+        *(InRoot$$Sections)
+        startup_DA14585_586.o (+RO)
+        *(system_DA14xxx)
+    }
+
+    ; ER_2 starts at the end of the load image area and ends at the Stack
+    ER_2 SDK_SEC_BOOTLOADER_ER_2_START_ADDRESS {
+        .ANY(+RO)
+        .ANY(+RW, +ZI)
+    }
+
+    ; Stack region growing down
+    ARM_LIB_STACK SDK_RAM_END_ADDR EMPTY -(0x600) {}
+}

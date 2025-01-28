@@ -1,0 +1,16 @@
+--cpu Cortex-M0
+".\out_da14585\objects\system_da14585_586.o"
+".\out_da14585\objects\startup_da14585_586.o"
+".\out_da14585\objects\exceptions.o"
+".\out_da14585\objects\arch_system.o"
+".\out_da14585\objects\syscntl.o"
+".\out_da14585\objects\gpio.o"
+".\out_da14585\objects\uart.o"
+".\out_da14585\objects\uart_utils.o"
+".\out_da14585\objects\hw_otpc_58x.o"
+".\out_da14585\objects\main.o"
+".\out_da14585\objects\user_periph_setup.o"
+--library_type=microlib --strict --scatter "..\..\..\shared\peripheral_examples_armclang.sct"
+--userlibpath ..\..\..\..\..\..\sdk\platform\system_library\output\Keil_5\ da14585_586.lib --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\out_DA14585\Listings\blinky_585.map" -o .\out_DA14585\Objects\blinky_585.axf
