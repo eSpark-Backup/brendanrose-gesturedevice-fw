@@ -1,1 +1,2 @@
-# brendanrose-gesturedevice-fw
+# Smart Wand Updates
+#### Client Name: Brendan Rose
