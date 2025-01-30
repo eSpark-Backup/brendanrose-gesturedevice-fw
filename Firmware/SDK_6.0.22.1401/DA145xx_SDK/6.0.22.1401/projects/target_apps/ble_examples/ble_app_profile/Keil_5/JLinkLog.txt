@@ -1,0 +1,123 @@
+T53E8 000:213.873   SEGGER J-Link V7.98c Log File
+T53E8 000:214.219   DLL Compiled: Aug  7 2024 15:37:06
+T53E8 000:214.455   Logging started @ 2025-01-30 16:58
+T53E8 000:214.514   Process: C:\Users\eSpark\AppData\Local\Keil_v5\UV4\UV4.exe
+T53E8 000:214.585 - 214.570ms
+T53E8 000:214.681 JLINK_SetWarnOutHandler(...)
+T53E8 000:214.741 - 0.069ms
+T53E8 000:214.815 JLINK_OpenEx(...)
+T53E8 000:223.070   Firmware: J-Link OB-SAM3U128 V1 compiled Oct 30 2023 12:12:08
+T53E8 000:225.398   Firmware: J-Link OB-SAM3U128 V1 compiled Oct 30 2023 12:12:08
+T53E8 000:244.631   Hardware: V1.00
+T53E8 000:244.728   S/N: 480071337
+T53E8 000:244.779   OEM: SEGGER
+T53E8 000:244.831   Feature(s): None
+T53E8 000:245.700   Bootloader: (FW returned invalid version)
+T53E8 000:246.415   USB speed mode: High speed (480 MBit/s)
+T53E8 000:246.765   TELNET listener socket opened on port 19021
+T53E8 000:247.015   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T53E8 000:247.183   WEBSRV Webserver running on local port 19080
+T53E8 000:247.331   Looking for J-Link GUI Server exe at: C:\Users\eSpark\AppData\Local\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T53E8 000:247.464   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T53E8 000:247.511   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T53E8 000:279.591   J-Link GUI Server info: "J-Link GUI server V7.96c "
+T53E8 000:284.242 - 69.408ms returns "O.K."
+T53E8 000:284.305 JLINK_GetEmuCaps()
+T53E8 000:284.324 - 0.011ms returns 0xB9FE5BBF
+T53E8 000:284.339 JLINK_TIF_GetAvailable(...)
+T53E8 000:284.592 - 0.252ms
+T53E8 000:284.617 JLINK_SetErrorOutHandler(...)
+T53E8 000:284.627 - 0.010ms
+T53E8 000:284.695 JLINK_ExecCommand("ProjectFile = "C:\Users\eSpark\Downloads\SDK_6.0.22.1401\DA145xx_SDK\6.0.22.1401\projects\target_apps\ble_examples\ble_app_profile\Keil_5\JLinkSettings.ini"", ...). 
+T53E8 000:354.338 - 69.650ms returns 0x00
+T53E8 000:354.483 JLINK_ExecCommand("Device = ARMCM0P", ...). 
+T53E8 000:354.958   Device "CORTEX-M0" selected.
+T53E8 000:355.363 - 0.857ms returns 0x00
+T53E8 000:355.386 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T53E8 000:355.401   ERROR: Unknown command
+T53E8 000:355.417 - 0.018ms returns 0x01
+T53E8 000:355.457 JLINK_GetHardwareVersion()
+T53E8 000:355.484 - 0.012ms returns 10000
+T53E8 000:355.510 JLINK_GetDLLVersion()
+T53E8 000:355.520 - 0.009ms returns 79803
+T53E8 000:355.533 JLINK_GetOEMString(...)
+T53E8 000:355.545 JLINK_GetFirmwareString(...)
+T53E8 000:355.555 - 0.009ms
+T53E8 000:355.572 JLINK_GetDLLVersion()
+T53E8 000:355.582 - 0.010ms returns 79803
+T53E8 000:355.595 JLINK_GetCompileDateTime()
+T53E8 000:355.606 - 0.011ms
+T53E8 000:355.620 JLINK_GetFirmwareString(...)
+T53E8 000:355.630 - 0.010ms
+T53E8 000:355.643 JLINK_GetHardwareVersion()
+T53E8 000:355.655 - 0.010ms returns 10000
+T53E8 000:355.666 JLINK_GetSN()
+T53E8 000:355.676 - 0.009ms returns 480071337
+T53E8 000:355.688 JLINK_GetOEMString(...)
+T53E8 000:355.703 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T53E8 000:356.442 - 0.716ms returns 0x00
+T53E8 000:356.482 JLINK_HasError()
+T53E8 000:356.510 JLINK_SetSpeed(5000)
+T53E8 000:356.625 - 0.121ms
+T53E8 000:357.137 JLINK_HasError()
+T53E8 000:357.160 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T53E8 000:357.184 - 0.023ms returns JLINKARM_RESET_TYPE_NORMAL
+T53E8 000:357.197 JLINK_Reset()
+T53E8 000:358.050   Found SW-DP with ID 0x0BC11477
+T53E8 000:361.454   DPIDR: 0x0BC11477
+T53E8 000:361.497   CoreSight SoC-400 or earlier
+T53E8 000:361.519   Scanning AP map to find all available APs
+T53E8 000:362.219   AP[1]: Stopped AP scan as end of AP map has been reached
+T53E8 000:362.517   AP[0]: AHB-AP (IDR: 0x04770031)
+T53E8 000:362.544   Iterating through AP map to find AHB-AP to use
+T53E8 000:363.235   AP[0]: Core found
+T53E8 000:363.261   AP[0]: AHB-AP ROM base: 0xE00FF000
+T53E8 000:363.587   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T53E8 000:363.614   Found Cortex-M0 r0p1, Little endian.
+T53E8 000:364.042   -- Max. mem block: 0x00005648
+T53E8 000:364.552   Cortex-M: The connected J-Link (S/N 480071337) uses an old firmware module: V1 (current is 3)
+T53E8 000:364.653   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T53E8 000:365.032   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T53E8 000:365.386   CPU_ReadMem(4 bytes @ 0xE0002000)
+T53E8 000:365.741   FPUnit: 4 code (BP) slots and 0 literal slots
+T53E8 000:365.766   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T53E8 000:366.161   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T53E8 000:366.617   CPU_ReadMem(4 bytes @ 0xE0001000)
+T53E8 000:366.974   CPU_WriteMem(4 bytes @ 0xE0001000)
+T53E8 000:367.402   CoreSight components:
+T53E8 000:367.439   ROMTbl[0] @ E00FF000
+T53E8 000:367.461   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T53E8 000:368.134   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T53E8 000:368.680   [0][0]: E000E000 CID B105E00D PID 000BB008 SCS
+T53E8 000:368.711   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T53E8 000:369.238   [0][1]: E0001000 CID B105E00D PID 000BB00A DWT
+T53E8 000:369.297   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T53E8 000:369.778   [0][2]: E0002000 CID B105E00D PID 000BB00B FPB
+T53E8 000:370.095   CPU is running
+T53E8 000:370.130   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T53E8 000:370.446   CPU is running
+T53E8 000:370.469   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T53E8 000:370.784   Reset: Halt core after reset via DEMCR.VC_CORERESET.
+T53E8 000:371.176   Reset: Reset device via AIRCR.SYSRESETREQ.
+T53E8 000:371.199   CPU is running
+T53E8 000:371.216   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T53E8 000:424.542   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T53E8 000:424.954   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T53E8 000:428.224   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T53E8 000:434.475   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T53E8 000:437.905   CPU_WriteMem(4 bytes @ 0xE0002000)
+T53E8 000:438.433   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T53E8 000:438.887   CPU_ReadMem(4 bytes @ 0xE0001000)
+T53E8 000:439.334   CPU_WriteMem(4 bytes @ 0xE0001000)
+T53E8 000:439.798 - 82.600ms
+T53E8 000:439.826 JLINK_GetId()
+T53E8 000:440.150 - 0.323ms returns 0x0BC11477
+T53E8 000:446.541 JLINK_GetFirmwareString(...)
+T53E8 000:446.571 - 0.030ms
+T53E8 005:686.254 JLINK_Close()
+T53E8 005:686.865   CPU_ReadMem(4 bytes @ 0xE0001000)
+T53E8 005:687.511   CPU_WriteMem(4 bytes @ 0xE0001000)
+T53E8 005:688.204   CPU_WriteMem(4 bytes @ 0xE0001004)
+T53E8 005:705.294 - 19.039ms
+T53E8 005:705.345   
+T53E8 005:705.355   Closed

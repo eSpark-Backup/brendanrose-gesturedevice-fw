@@ -301,5 +301,4 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1,
                                             (uint8_t *) DEF_SVC3_READ_VAL_3_USER_DESC},
 };
-
 /// @} USER_CONFIG

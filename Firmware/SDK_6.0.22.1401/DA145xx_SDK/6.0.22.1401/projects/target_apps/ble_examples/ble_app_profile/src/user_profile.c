@@ -49,7 +49,7 @@
 #include "app_easy_timer.h"
 #include "user_profile.h"
 #include "co_bt.h"
-
+#include "custs1_task.h"
 #include "systick.h" 
 #include "uart_utils.h"
 #include "user_periph_setup.h"
@@ -60,6 +60,7 @@
 #include "stdlib.h"
 #include "user_wakeup.h"
 #include "wkupct_quadec.h" 
+#include "user_custs1_def.h"
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -371,6 +372,27 @@ static void mnf_data_update()
 
 /**
  ****************************************************************************************
+ * @brief 
+ ****************************************************************************************
+ */
+void send_ble_data(void)
+{
+    static char data[] = "{\"device_id\": \"123456\", \"g_id\": \"swand_001\"}";
+    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
+                                                       prf_get_task_from_id(TASK_ID_CUSTS1), 
+                                                       TASK_APP, 
+                                                       custs1_val_ntf_ind_req, 
+                                                       DEF_SVC1_LONG_VALUE_CHAR_LEN);
+    req->notification = true;
+    req->handle = SVC1_IDX_LONG_VALUE_VAL;
+    req->length = DEF_SVC1_LONG_VALUE_CHAR_LEN;
+    memcpy(req->value, data, DEF_SVC1_LONG_VALUE_CHAR_LEN);
+
+    KE_MSG_SEND(req);
+}
+
+/**
+ ****************************************************************************************
  * @brief Add an AD structure in the Advertising or Scan Response Data of the
  *        GAPM_START_ADVERTISE_CMD parameter struct.
  * @param[in] cmd               GAPM_START_ADVERTISE_CMD parameter struct
@@ -442,7 +464,7 @@ static void adv_data_update_timer_cb()
 
     // Update advertising data on the fly
     app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
-    
+    send_ble_data();
     // // Restart timer for the next advertising update
     // app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
     // Restart timer for the next advertising update
