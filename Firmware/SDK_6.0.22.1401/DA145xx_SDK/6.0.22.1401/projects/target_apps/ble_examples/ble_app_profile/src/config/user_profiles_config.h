@@ -76,7 +76,7 @@
                                         DIS_PNP_ID_CHAR_SUP)
 
 /// Manufacturer Name (up to 18 chars)
-#define APP_DIS_MANUFACTURER_NAME       ("Renesas")
+#define APP_DIS_MANUFACTURER_NAME       ("smarch")
 #define APP_DIS_MANUFACTURER_NAME_LEN   (sizeof(APP_DIS_MANUFACTURER_NAME) - 1)
 
 /// Model Number String

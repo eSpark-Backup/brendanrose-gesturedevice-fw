@@ -71,12 +71,23 @@
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
 /* Advertising data update timer */
-#define APP_ADV_DATA_UPDATE_TO              (3000)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+//#define APP_ADV_DATA_UPDATE_TO              (3000)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_ADV_DATA_UPDATE_TO              (1)   // 1*10ms = 0.01sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_GESTURE_LOCK_TO              	(50)  // 50*10ms = 0.5sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_GESTURE_RESET_DISPLAY_TO       	(300) // 300*10ms = 3sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_MOTOR_ON_TO       				(100) // 50*10ms = 0.5sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+
+#define XL_AVERAGE_NUM_MULTIPLIER			(3)
+#define XL_AVERAGE_NUM_SAMPLES				(16) //8
 
 /* Manufacturer specific data constants */
-#define APP_AD_MSD_COMPANY_ID       (0xABCD)
-#define APP_AD_MSD_COMPANY_ID_LEN   (2)
-#define APP_AD_MSD_DATA_LEN         (sizeof(uint16_t))
+// #define APP_AD_MSD_COMPANY_ID       (0xABCD)
+// #define APP_AD_MSD_COMPANY_ID_LEN   (2)
+// #define APP_AD_MSD_DATA_LEN         (sizeof(uint16_t))
+#define APP_AD_MSD_COMPANY_ID               (0x00)//(0x06190E)
+#define APP_AD_MSD_COMPANY_ID_LEN           (1)//(3)
+#define APP_AD_MSD_DATA_NUM_BYTES           (5)
+#define APP_AD_MSD_DATA_LEN                 (APP_AD_MSD_DATA_NUM_BYTES*sizeof(uint8_t))
 
 /*
  * TYPE DEFINITIONS
@@ -141,6 +152,19 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
+
+/**
+ ****************************************************************************************
+ * @brief Waking up from sleep
+ ****************************************************************************************
+*/
+void user_app_waking_from_sleep(void);
+/**
+ ****************************************************************************************
+ * @brief Going tosleep
+ ****************************************************************************************
+*/
+void user_app_going_to_sleep(void);
 
 /// @} APP
 

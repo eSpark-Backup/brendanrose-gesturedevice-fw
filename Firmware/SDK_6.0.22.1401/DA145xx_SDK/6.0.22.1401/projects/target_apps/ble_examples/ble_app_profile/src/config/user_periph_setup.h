@@ -42,14 +42,39 @@
 #include "arch.h"
 #include "gpio.h"
 #include "uart.h"
-
+#include "i2c.h"
+#include "i2c_eeprom.h"
 
 /*
  * DEFINES
  ****************************************************************************************
  */
 
+//0 = dev kit, 1 = plug
+#define PROD_OR_DEV 0 
 
+#if PROD_OR_DEV == 0
+		#define GPIO_BUTTON_PORT				GPIO_PORT_0
+		#define GPIO_BUTTON_PIN					GPIO_PIN_9
+		
+    #define MOTOR_PORT                GPIO_PORT_0
+		#define MOTOR_PIN								GPIO_PIN_11
+		#else
+		#define GPIO_BUTTON_PORT				GPIO_PORT_0
+		#define GPIO_BUTTON_PIN					GPIO_PIN_11
+		
+    #define MOTOR_PORT                GPIO_PORT_0
+    #define MOTOR_PIN                 GPIO_PIN_9
+#endif
+
+    #define I2C_SDA_PORT           GPIO_PORT_0
+    #define I2C_SDA_PIN            GPIO_PIN_8	
+		
+    #define I2C_SCL_PORT           GPIO_PORT_0
+    #define I2C_SCL_PIN            GPIO_PIN_7
+		
+    #define GPIO_INT_PORT           GPIO_PORT_0
+    #define GPIO_INT_PIN            GPIO_PIN_9
 /****************************************************************************************/
 /* UART2 configuration to use with arch_console print messages                          */
 /****************************************************************************************/

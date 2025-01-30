@@ -43,6 +43,8 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
+#include "i2c.h"
+#include "user_xl_driver.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -61,7 +63,11 @@ void GPIO_reservations(void)
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
-
+    RESERVE_GPIO(BUTTON, GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, PID_GPIO);
+		RESERVE_GPIO(LED_EN, MOTOR_PORT, MOTOR_PIN, PID_GPIO);
+	
+	RESERVE_GPIO(I2C_SCL, I2C_SCL_PORT, I2C_SCL_PIN, PID_I2C_SCL);  
+	RESERVE_GPIO(I2C_SDA, I2C_SDA_PORT, I2C_SDA_PIN, PID_I2C_SDA);
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
@@ -75,6 +81,8 @@ void set_pad_functions(void)
     i.e. to set P0_1 as Generic purpose Output:
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
+    GPIO_ConfigurePin(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, INPUT_PULLUP, PID_GPIO, false);
+    GPIO_ConfigurePin(MOTOR_PORT, MOTOR_PIN, OUTPUT, PID_GPIO, false);
 
 #if defined (__DA14586__)
     // Disallow spontaneous DA14586 SPI Flash wake-up
@@ -83,12 +91,30 @@ void set_pad_functions(void)
     // Disallow spontaneous SPI Flash wake-up
     GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
-
+    GPIO_ConfigurePin(I2C_SCL_PORT, I2C_SCL_PIN, INPUT, PID_I2C_SCL, false);  
+    GPIO_ConfigurePin(I2C_SDA_PORT, I2C_SDA_PIN, INPUT, PID_I2C_SDA, false);
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
 }
+
+/* Default I2C interface configuration */
+static const i2c_cfg_t i2c_cfg = {
+  .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
+  .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
+  .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
+  .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
+  .restart_en = I2C_RESTART_ENABLE,
+  .speed = I2C_SPEED_STANDARD,
+  .mode = I2C_MODE_MASTER,
+  .addr_mode = I2C_ADDRESSING_7B,
+  /* Device address specified when read/write takes place allowing 
+     multiple devices to be present on the same I2C bus */
+  .address = 0,
+  .tx_fifo_level = 1,
+  .rx_fifo_level = 1,
+};
 
 #if defined (CFG_PRINTF_UART2)
 // Configuration struct for UART2
@@ -131,4 +157,5 @@ void periph_init(void)
 
     // Enable the pads
     GPIO_set_pad_latch_en(true);
+    i2c_init(&i2c_cfg);
 }

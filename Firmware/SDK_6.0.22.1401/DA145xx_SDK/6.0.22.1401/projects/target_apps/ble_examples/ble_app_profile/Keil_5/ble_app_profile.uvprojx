@@ -10,14 +10,14 @@
       <TargetName>DA14585</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.9.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.1.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -333,7 +333,7 @@
             <v6LangP>5</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>1</v6Lto>
+            <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
@@ -1503,6 +1503,26 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>user_xl_driver</GroupName>
+          <Files>
+            <File>
+              <FileName>user_xl_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_xl_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_wakeup</GroupName>
+          <Files>
+            <File>
+              <FileName>user_wakeup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_wakeup.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -1515,8 +1535,8 @@
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.9.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.1.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -3002,20 +3022,40 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>user_xl_driver</GroupName>
+          <Files>
+            <File>
+              <FileName>user_xl_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_xl_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_wakeup</GroupName>
+          <Files>
+            <File>
+              <FileName>user_wakeup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_wakeup.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
       <TargetName>DA14531</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.9.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.1.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -3331,7 +3371,7 @@
             <v6LangP>5</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>1</v6Lto>
+            <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
@@ -4399,6 +4439,26 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>user_xl_driver</GroupName>
+          <Files>
+            <File>
+              <FileName>user_xl_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_xl_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_wakeup</GroupName>
+          <Files>
+            <File>
+              <FileName>user_wakeup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_wakeup.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -4411,8 +4471,8 @@
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.9.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.1.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -5796,6 +5856,26 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>user_xl_driver</GroupName>
+          <Files>
+            <File>
+              <FileName>user_xl_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_xl_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_wakeup</GroupName>
+          <Files>
+            <File>
+              <FileName>user_wakeup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_wakeup.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -5808,8 +5888,8 @@
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.9.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.1.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -7190,6 +7270,26 @@
               <FileName>user_profile.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\user_profile.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_xl_driver</GroupName>
+          <Files>
+            <File>
+              <FileName>user_xl_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_xl_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_wakeup</GroupName>
+          <Files>
+            <File>
+              <FileName>user_wakeup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_wakeup.c</FilePath>
             </File>
           </Files>
         </Group>

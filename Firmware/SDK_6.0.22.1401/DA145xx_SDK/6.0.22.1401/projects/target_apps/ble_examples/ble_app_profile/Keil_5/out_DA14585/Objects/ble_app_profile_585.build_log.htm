@@ -1,0 +1,117 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.41.0.0
+Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Rafay Ahsn, eSpark, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.41.0.0
+Toolchain Path:  C:\Users\eSpark\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
+CPU DLL:         SARMCM3.DLL V5.41.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.6.0
+Target DLL:      Segger\JL2CM3.dll V2.99.45.0
+Dialog DLL:      TARMCM1.DLL V1.14.6.0
+ 
+<h2>Project:</h2>
+C:\Users\eSpark\Downloads\SDK_6.0.22.1401\DA145xx_SDK\6.0.22.1401\projects\target_apps\ble_examples\ble_app_profile\Keil_5\ble_app_profile.uvprojx
+Project File Date:  01/29/2025
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.22', folder: 'C:\Users\eSpark\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'DA14585'
+compiling hardfault_handler.c...
+compiling arch_main.c...
+compiling arch_system.c...
+compiling gpio.c...
+../src/platform/user_periph_setup.c(67): error: use of undeclared identifier 'GPIO_PIN_11'; did you mean 'GPIO_PIN_1'?
+   67 |         RESERVE_GPIO(LED_EN, MOTOR_PORT, MOTOR_PIN, PID_GPIO);
+      |                                          ^~~~~~~~~
+      |                                          GPIO_PIN_1
+./../src/config\user_periph_setup.h(61): note: expanded from macro 'MOTOR_PIN'
+   61 |                 #define MOTOR_PIN                                                               GPIO_PIN_11
+      |                                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(419): note: expanded from macro 'RESERVE_GPIO'
+  419 | #define RESERVE_GPIO( name, port, pin, func )   { GPIO[port][pin] = (GPIO[port][pin] != 0) ? (-1) : 1; GPIO_status |= ((uint64_t)GPIO[port][pin] << pin) << (port * 16);}
+      |                                                              ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(147): note: 'GPIO_PIN_1' declared here
+  147 |     GPIO_PIN_1 = 1U,
+      |     ^
+../src/platform/user_periph_setup.c(67): error: use of undeclared identifier 'GPIO_PIN_11'; did you mean 'GPIO_PIN_1'?
+   67 |         RESERVE_GPIO(LED_EN, MOTOR_PORT, MOTOR_PIN, PID_GPIO);
+      |                                          ^~~~~~~~~
+      |                                          GPIO_PIN_1
+./../src/config\user_periph_setup.h(61): note: expanded from macro 'MOTOR_PIN'
+   61 |                 #define MOTOR_PIN                                                               GPIO_PIN_11
+      |                                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(419): note: expanded from macro 'RESERVE_GPIO'
+  419 | #define RESERVE_GPIO( name, port, pin, func )   { GPIO[port][pin] = (GPIO[port][pin] != 0) ? (-1) : 1; GPIO_status |= ((uint64_t)GPIO[port][pin] << pin) << (port * 16);}
+      |                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(147): note: 'GPIO_PIN_1' declared here
+  147 |     GPIO_PIN_1 = 1U,
+      |     ^
+../src/platform/user_periph_setup.c(67): error: use of undeclared identifier 'GPIO_PIN_11'; did you mean 'GPIO_PIN_1'?
+   67 |         RESERVE_GPIO(LED_EN, MOTOR_PORT, MOTOR_PIN, PID_GPIO);
+      |                                          ^~~~~~~~~
+      |                                          GPIO_PIN_1
+./../src/config\user_periph_setup.h(61): note: expanded from macro 'MOTOR_PIN'
+   61 |                 #define MOTOR_PIN                                                               GPIO_PIN_11
+      |                                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(419): note: expanded from macro 'RESERVE_GPIO'
+  419 | #define RESERVE_GPIO( name, port, pin, func )   { GPIO[port][pin] = (GPIO[port][pin] != 0) ? (-1) : 1; GPIO_status |= ((uint64_t)GPIO[port][pin] << pin) << (port * 16);}
+      |                                                                                                                                             ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(147): note: 'GPIO_PIN_1' declared here
+  147 |     GPIO_PIN_1 = 1U,
+      |     ^
+../src/platform/user_periph_setup.c(67): error: use of undeclared identifier 'GPIO_PIN_11'; did you mean 'GPIO_PIN_1'?
+   67 |         RESERVE_GPIO(LED_EN, MOTOR_PORT, MOTOR_PIN, PID_GPIO);
+      |                                          ^~~~~~~~~
+      |                                          GPIO_PIN_1
+./../src/config\user_periph_setup.h(61): note: expanded from macro 'MOTOR_PIN'
+   61 |                 #define MOTOR_PIN                                                               GPIO_PIN_11
+      |                                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(419): note: expanded from macro 'RESERVE_GPIO'
+  419 | #define RESERVE_GPIO( name, port, pin, func )   { GPIO[port][pin] = (GPIO[port][pin] != 0) ? (-1) : 1; GPIO_status |= ((uint64_t)GPIO[port][pin] << pin) << (port * 16);}
+      |                                                                                                                                                     ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(147): note: 'GPIO_PIN_1' declared here
+  147 |     GPIO_PIN_1 = 1U,
+      |     ^
+../src/platform/user_periph_setup.c(85): error: use of undeclared identifier 'GPIO_PIN_11'; did you mean 'GPIO_PIN_1'?
+   85 |     GPIO_ConfigurePin(MOTOR_PORT, MOTOR_PIN, OUTPUT, PID_GPIO, false);
+      |                                   ^~~~~~~~~
+      |                                   GPIO_PIN_1
+./../src/config\user_periph_setup.h(61): note: expanded from macro 'MOTOR_PIN'
+   61 |                 #define MOTOR_PIN                                                               GPIO_PIN_11
+      |                                                                                                 ^
+./../../../../../sdk/platform/driver/gpio\gpio.h(147): note: 'GPIO_PIN_1' declared here
+  147 |     GPIO_PIN_1 = 1U,
+      |     ^
+5 errors generated.
+compiling user_periph_setup.c...
+compiling rwble.c...
+compiling user_profile.c...
+".\out_DA14585\Objects\ble_app_profile_585.axf" - 5 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                https://www.keil.com/pack/ARM.Cortex_DFP.1.1.0.pack
+                ARM::Cortex_DFP@1.1.0
+                ARM Cortex Reference Subsystems Device Family Pack
+
+<h2>Collection of Component include folders:</h2>
+  C:/Users/eSpark/AppData/Local/Arm/Packs/ARM/Cortex_DFP/1.1.0/Device/ARMCM0/Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>
