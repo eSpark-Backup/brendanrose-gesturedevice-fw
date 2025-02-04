@@ -44,8 +44,7 @@
 #include "wkupct_quadec.h" 
 #include "user_wakeup.h"
 #include "user_periph_setup.h"
-#include "uart_utils.h"
-#include "user_profile.h"
+#include "user_peripheral.h"
 #include "arch_console.h"
 
 /*

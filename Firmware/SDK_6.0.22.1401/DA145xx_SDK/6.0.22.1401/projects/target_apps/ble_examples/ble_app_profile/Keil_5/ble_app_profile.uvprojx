@@ -1028,6 +1028,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\timer\timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1497,9 +1507,19 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_profile.c</FileName>
+              <FileName>user_peripheral.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_profile.c</FilePath>
+              <FilePath>..\src\user_peripheral.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_custs_impl</GroupName>
+          <Files>
+            <File>
+              <FileName>user_custs1_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2547,6 +2567,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\timer\timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3016,9 +3046,19 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_profile.c</FileName>
+              <FileName>user_peripheral.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_profile.c</FilePath>
+              <FilePath>..\src\user_peripheral.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_custs_impl</GroupName>
+          <Files>
+            <File>
+              <FileName>user_custs1_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3964,6 +4004,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\timer\timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4433,9 +4483,19 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_profile.c</FileName>
+              <FileName>user_peripheral.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_profile.c</FilePath>
+              <FilePath>..\src\user_peripheral.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_custs_impl</GroupName>
+          <Files>
+            <File>
+              <FileName>user_custs1_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5381,6 +5441,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\timer\timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5850,9 +5920,19 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_profile.c</FileName>
+              <FileName>user_peripheral.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_profile.c</FilePath>
+              <FilePath>..\src\user_peripheral.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_custs_impl</GroupName>
+          <Files>
+            <File>
+              <FileName>user_custs1_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6798,6 +6878,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\driver\timer\timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7267,9 +7357,19 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_profile.c</FileName>
+              <FileName>user_peripheral.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_profile.c</FilePath>
+              <FilePath>..\src\user_peripheral.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user_custs_impl</GroupName>
+          <Files>
+            <File>
+              <FileName>user_custs1_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
           </Files>
         </Group>

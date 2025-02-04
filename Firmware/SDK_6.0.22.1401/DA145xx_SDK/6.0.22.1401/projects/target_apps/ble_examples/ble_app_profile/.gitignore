@@ -1,2 +1,5 @@
 Keil_5/out_DA14531
+Keil_5/out_DA14585
 *.uvguix.eSpark
+*JLinkLog.txt
+*.ini
