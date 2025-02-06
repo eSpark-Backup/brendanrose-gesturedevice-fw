@@ -10,13 +10,31 @@
 * @{
 ****************************************************************************************
 */
-#include "arch_console.h"
+//#include "arch_console.h"
 #include "user_peripheral.h"
 #include "user_periph_setup.h"
 #include "user_custs1_impl.h"
 #include "user_custs1_def.h"
 #include "user_wakeup.h"
 #include "user_xl_driver.h"
+
+/* Duration of timer for connection parameter update request */
+#define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+
+/* Advertising data update timer */
+#define APP_ADV_DATA_UPDATE_TO              (1)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+
+#define XL_AVERAGE_NUM_SAMPLES              (16) //8
+
+/* Manufacturer specific data constants */
+#define APP_AD_MSD_COMPANY_ID               (0x00)
+#define APP_AD_MSD_COMPANY_ID_LEN           (1)
+#define APP_AD_MSD_DATA_NUM_BYTES            5
+#define APP_AD_MSD_DATA_LEN                 (APP_AD_MSD_DATA_NUM_BYTES*sizeof(uint8_t))
+
+volatile int8_t xDataArray[XL_AVERAGE_NUM_SAMPLES];
+volatile int8_t yDataArray[XL_AVERAGE_NUM_SAMPLES];
+volatile int8_t zDataArray[XL_AVERAGE_NUM_SAMPLES];
 
 uint8_t xlDataArrayCounter;
 bool gestureLockedOut = false;
@@ -30,7 +48,7 @@ struct mnf_specific_data_ad_structure {
     uint8_t ad_structure_size;
     uint8_t ad_structure_type;
     // uint8_t company_id[APP_AD_MSD_COMPANY_ID_LEN];
-    uint8_t proprietary_data[APP_AD_MSD_DATA_LEN];
+    uint8_t proprietary_data[3];
 };
 
 // GLOBAL VARIABLE DEFINITIONS
@@ -38,9 +56,9 @@ uint8_t app_connection_idx                       __SECTION_ZERO("retention_mem_a
 timer_hnd app_adv_data_update_timer_used         __SECTION_ZERO("retention_mem_area0");
 timer_hnd app_param_update_request_timer_used    __SECTION_ZERO("retention_mem_area0");
 ke_msg_id_t timer_used                           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-//timer_hnd app_gesture_direction_timer_used      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-//timer_hnd app_gesture_display_reset_timer_used  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd app_motor_on_timer_used  				       __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd app_gesture_direction_timer_used      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd app_gesture_display_reset_timer_used  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd app_motor_on_timer_used  				__SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 // Retained variables
 struct mnf_specific_data_ad_structure mnf_data   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -64,13 +82,13 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN]  __SECTION_ZERO("retention_mem_a
 static void gesture_display_reset_timer_cb()
 {
 	//arch_printf("RESETTING THE GESTURE COUNTER AND DISPLAY\n\r");	
-	for(int i=0; i<APP_AD_MSD_DATA_NUM_BYTES;i++)
+	for(int i=0; i<(APP_AD_MSD_DATA_NUM_BYTES-2);i++)
 	{
 		mnf_data.proprietary_data[i] = 0;
 	}
 	gestureCounter = 0;	
 	gestureDisplayReset = false;
-	arch_printf("gesture display reset called\n\r");
+	//arch_printf("gesture display reset called\n\r");
 	user_app_going_to_sleep();
 }
 
@@ -98,7 +116,7 @@ static void mnf_data_init() {
     mnf_data.proprietary_data[1] = 0;
     mnf_data.proprietary_data[2] = 0;
     gestureCounter = 0;
-	  xlDataArrayCounter = 0;
+    xlDataArrayCounter = 0;
 }
 
 /**
@@ -107,27 +125,26 @@ static void mnf_data_init() {
 ****************************************************************************************
 */
 static void mnf_data_update() {
-    uint16_t data;
-    data = mnf_data.proprietary_data[0] | (mnf_data.proprietary_data[1] << 8);
-    data += 1;
-    mnf_data.proprietary_data[0] = data & 0xFF;
-    mnf_data.proprietary_data[1] = (data >> 8) & 0xFF;
+    // uint16_t data;
+    // data = mnf_data.proprietary_data[0] | (mnf_data.proprietary_data[1] << 8);
+    // data += 1;
+    // mnf_data.proprietary_data[0] = data & 0xFF;
+    // mnf_data.proprietary_data[1] = (data >> 8) & 0xFF;
 
-    if (data == 0xFFFF) {
-        mnf_data.proprietary_data[0] = 0;
-        mnf_data.proprietary_data[1] = 0;
-    }
-
-    /*
+    // if (data == 0xFFFF) {
+    //     mnf_data.proprietary_data[0] = 0;
+    //     mnf_data.proprietary_data[1] = 0;
+    // }
+    
     int xData = 0;
     int	yData = 0;
     int zData = 0;
 
     for(int imCounting=0; imCounting<XL_AVERAGE_NUM_SAMPLES;imCounting++)
     {
-            xDataArray[imCounting] *= 0.9;
-            yDataArray[imCounting] *= 0.9;
-            zDataArray[imCounting] *= 0.9;
+        xDataArray[imCounting] *= 0.9;
+        yDataArray[imCounting] *= 0.9;
+        zDataArray[imCounting] *= 0.9;
     }
 
     xDataArray[xlDataArrayCounter] = (i2c_XL_Read_X()>>8);
@@ -177,11 +194,11 @@ static void mnf_data_update() {
             switch(deltaData[2])
             {
                 case 0:
-                    arch_printf("\n\r*****\n\r**X** x:%d, y:%d, z:%d, gestureSlot:%d\n\r*****\n\r\n\r",deltaData[0],deltaData[1],deltaData[2],gestureCounter);
+                    // arch_printf("\n\r*****\n\r**X** x:%d, y:%d, z:%d, gestureSlot:%d\n\r*****\n\r\n\r",deltaData[0],deltaData[1],deltaData[2],gestureCounter);
                     newGestureData = ((deltaData[0]>0)?0x4C:0x52);
                 break;
                 case 1:
-                    arch_printf("\n\r*****\n\r**Y** x:%d, y:%d, z:%d, gestureSlot:%d\n\r*****\n\r\n\r",deltaData[0],deltaData[1],deltaData[2],gestureCounter);
+                    // arch_printf("\n\r*****\n\r**Y** x:%d, y:%d, z:%d, gestureSlot:%d\n\r*****\n\r\n\r",deltaData[0],deltaData[1],deltaData[2],gestureCounter);
                     newGestureData = ((deltaData[1]>0)?0x44:0x55);
                 break;
                 default:
@@ -216,7 +233,6 @@ static void mnf_data_update() {
             gestureDisplayReset = true;
             deviceWokeUpStartCountdownToSleep = false;
     }
-    */
 }
 
 /**
@@ -305,18 +321,28 @@ static void param_update_request_timer_cb() {
 
 void app_adcval1_timer_cb_handler() 
 {
-		char data[65];
+    char data[65];
     struct bd_addr mac_addr;
     
+    // if (nvds_get(NVDS_TAG_BD_ADDRESS, mac_addr.addr, NULL) == NVDS_OK)
+    // {
+    //     sprintf(data, "{\"device_id\": \"%02X:%02X:%02X:%02X:%02X:%02X\", \"gesture_id\": \"swand_001\"}", 
+    //             mac_addr.addr[5], mac_addr.addr[4], mac_addr.addr[3], 
+    //             mac_addr.addr[2], mac_addr.addr[1], mac_addr.addr[0]);
+    // }
+    // else
+    // {
+    //     sprintf(data, "{\"device_id\": \"UNKNOWN\", \"gesture_id\": \"swand_001\"}");
+    // }
     if (nvds_get(NVDS_TAG_BD_ADDRESS, mac_addr.addr, NULL) == NVDS_OK)
     {
-        sprintf(data, "{\"device_id\": \"%02X:%02X:%02X:%02X:%02X:%02X\", \"gesture_id\": \"swand_001\"}", 
+        sprintf(data, "{\"device_id\": \"%02X:%02X:%02X:%02X:%02X:%02X\", \"gesture_id\": \"%02X\"}", 
                 mac_addr.addr[5], mac_addr.addr[4], mac_addr.addr[3], 
-                mac_addr.addr[2], mac_addr.addr[1], mac_addr.addr[0]);
+                mac_addr.addr[2], mac_addr.addr[1], mac_addr.addr[0], mnf_data.proprietary_data[gestureCounter]);
     }
     else
     {
-        sprintf(data, "{\"device_id\": \"UNKNOWN\", \"gesture_id\": \"swand_001\"}");
+        sprintf(data, "{\"device_id\": \"UNKNOWN\", \"gesture_id\": \"%02X\"}", mnf_data.proprietary_data[gestureCounter]);
     }
 
     struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
@@ -400,62 +426,9 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                 case SVC1_IDX_CONTROL_POINT_VAL:
                     user_svc1_ctrl_wr_ind_handler(msgid, msg_param, dest_id, src_id);
                     break;
-                case SVC1_IDX_LED_STATE_VAL:
-                    user_svc1_led_wr_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                case SVC1_IDX_ADC_VAL_1_NTF_CFG:
-                    user_svc1_adc_val_1_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                case SVC1_IDX_BUTTON_STATE_NTF_CFG:
-                    user_svc1_button_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                case SVC1_IDX_INDICATEABLE_IND_CFG:
-                    user_svc1_long_val_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                case SVC1_IDX_LONG_VALUE_NTF_CFG:
-                    user_svc1_long_val_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                case SVC1_IDX_LONG_VALUE_VAL:
-                    user_svc1_long_val_wr_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
                 default:
                     break;
             }
-        } break;
-        case CUSTS1_VAL_NTF_CFM: {
-            struct custs1_val_ntf_cfm const *msg_param = (struct custs1_val_ntf_cfm const *)(param);
-            switch (msg_param->handle) {
-                case SVC1_IDX_ADC_VAL_1_VAL:
-                    break;
-                case SVC1_IDX_BUTTON_STATE_VAL:
-                    break;
-                case SVC1_IDX_LONG_VALUE_VAL:
-                    break;
-                default:
-                    break;
-            }
-        } break;
-        case CUSTS1_VAL_IND_CFM: {
-            struct custs1_val_ind_cfm const *msg_param = (struct custs1_val_ind_cfm const *)(param);
-
-            switch (msg_param->handle)
-            {
-                case SVC1_IDX_INDICATEABLE_VAL: break;
-                default:                        break;
-            }
-        } break;
-        case CUSTS1_ATT_INFO_REQ:
-        {
-            struct custs1_att_info_req const *msg_param = (struct custs1_att_info_req const *)param;
-            switch (msg_param->att_idx)
-            {
-                case SVC1_IDX_LONG_VALUE_VAL:
-                    user_svc1_long_val_att_info_req_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-                default:
-                    user_svc1_rest_att_info_req_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-             }
         } break;
         case GAPC_PARAM_UPDATED_IND: {
             // Cast the "param" pointer to the appropriate message structure
@@ -499,7 +472,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 */
 static void motor_on_timer_cb()
 {
-	arch_printf("Motor stopping\n\r");	
+	// arch_printf("Motor stopping\n\r");	
 	GPIO_SetInactive(MOTOR_PORT, MOTOR_PIN);
 	continueUpdatingAdvertisementData = true;
 	app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
@@ -509,7 +482,7 @@ static void motor_on_timer_cb()
 void user_app_waking_from_sleep(void)
 {
 	i2c_XL_initialize();
-	arch_printf("Motor starting\n\r");	
+	// arch_printf("Motor starting\n\r");	
 	app_motor_on_timer_used = app_easy_timer(100, motor_on_timer_cb);
 	GPIO_SetActive(MOTOR_PORT, MOTOR_PIN);
 }
@@ -517,7 +490,7 @@ void user_app_going_to_sleep(void)
 {
 	continueUpdatingAdvertisementData = false;
 	i2c_XL_Sleep_Mode();
-	arch_printf("\n\rSystem going to sleep",NULL);
+	// arch_printf("\n\rSystem going to sleep",NULL);
 
 	app_easy_gap_advertise_stop();
 

@@ -12,16 +12,16 @@
  * DEFINES
  ****************************************************************************************
  */ 
- #define XL_ADDRESS 0x18
+ #define XL_ADDRESS             0x18
  
- #define XL_WHO_AM_I 0x0F
- #define XL_CONTROL_REG_0 0x1E
- #define XL_CONTROL_REG_1 0x20
- #define XL_CONTROL_REG_2 0x21
- #define XL_CONTROL_REG_3 0x22
- #define XL_CONTROL_REG_4 0x23
- #define XL_CONTROL_REG_5 0x24
- #define XL_CONTROL_REG_6 0x25
+ #define XL_WHO_AM_I            0x0F
+ #define XL_CONTROL_REG_0       0x1E
+ #define XL_CONTROL_REG_1       0x20
+ #define XL_CONTROL_REG_2       0x21
+ #define XL_CONTROL_REG_3       0x22
+ #define XL_CONTROL_REG_4       0x23
+ #define XL_CONTROL_REG_5       0x24
+ #define XL_CONTROL_REG_6       0x25
  #define XL_OUT_X_L				0x28
  #define XL_OUT_X_H				0x29
  #define XL_OUT_Y_L				0x2A

@@ -258,7 +258,7 @@ extern void JT_llm_le_adv_report_ind_func(struct co_buf_rx_desc *rxdesc);
  */
 
 #if (BLE_CONNECTION_MAX_USER == 1)
-#define RWIP_HEAP_NON_RET_SIZE_USER     1024
+#define RWIP_HEAP_NON_RET_SIZE_USER     512
 #else
 #define RWIP_HEAP_NON_RET_SIZE_USER     2048 //(1024 * BLE_CONNECTION_MAX_USER)
 #endif
